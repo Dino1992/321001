@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 namespace SlovaSbornik
 {
     class Program
@@ -14,13 +15,13 @@ namespace SlovaSbornik
             string str;
             Parser a;
             List<string> words;
-            
+             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("Скопируйте текст в буфер обмена.");
-            while ((string)Clipboard.GetText()=="") 
+            while ((string)Clipboard.GetData(DataFormats.UnicodeText)=="") 
             {
                
             }
-            str = Clipboard.GetText();
+            str = (string)Clipboard.GetData(DataFormats.UnicodeText);
             a = new Parser();
            words= a.SplitString(str);
         for (int i=0; i<words.Count;i++)
